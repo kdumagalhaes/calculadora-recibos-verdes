@@ -1,11 +1,10 @@
 import { Emoji } from '../Emoji/Emoji'
+import { Logo } from '../Logo/Logo'
 
 export function Header() {
   return (
-    <header className="container max-w-6xl mx-auto px-2 flex justify-between h-20 items-center">
-      <h1 className="flex gap-2 text-4xl">
-        <Emoji label="euro banknote" symbol="💶" />
-      </h1>
+    <header className="container max-w-6xl mx-auto px-2 flex justify-between h-20 items-end">
+      <Logo />
       <div className="flex gap-3 items-center">
         <p className="font-thin">kdumagalhaes</p>
         <a
