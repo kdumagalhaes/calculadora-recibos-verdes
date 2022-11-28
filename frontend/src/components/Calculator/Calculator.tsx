@@ -1,4 +1,5 @@
 import { useState, ChangeEvent, FormEvent, useRef, useEffect } from 'react'
+import { formatMoney } from '../../utils/formatMoney'
 import autoAnimate from '@formkit/auto-animate'
 
 export function Calculator() {
@@ -95,11 +96,11 @@ export function Calculator() {
           <div className="bg-emerald-100 p-4 text-emerald-800 flex flex-col gap-2 rounded-b-lg">
             <div className="flex justify-between items-center border-b-2 border-emerald-200/60 mb-3 pb-1">
               <p className="font-light">Faturamento trimestral bruto</p>
-              <span className="font-light">€{totalGross.toFixed(2)}</span>
+              <span className="font-light">{formatMoney(totalGross)}</span>
             </div>
             <div className="flex justify-between items-center border-b-2 border-emerald-200/60 mb-3 pb-1">
               <p className="font-light">Rendimento relevante</p>
-              <span className="font-light">€{relevantIncome.toFixed(2)}</span>
+              <span className="font-light">{formatMoney(relevantIncome)}</span>
             </div>
             <div className="flex justify-between items-center border-b-2 border-emerald-200/60 mb-3 pb-1">
               <p className="font-light">Taxa</p>
@@ -108,7 +109,7 @@ export function Calculator() {
             <div className="flex justify-between items-center">
               <p className="font-semibold">Imposto mensal a reter</p>
               <span className="bg-emerald-900 p-1 text-emerald-300 rounded">
-                €{monthlyTax.toFixed(2)}
+                {formatMoney(monthlyTax)}
               </span>
             </div>
           </div>
