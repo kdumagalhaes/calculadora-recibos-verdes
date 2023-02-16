@@ -52,8 +52,9 @@ npm run test
 - [resize-observer-polyfill](https://www.npmjs.com/package/resize-observer-polyfill)
 
 ## Improvement opportunities
-- Refactor form logic;
-- Add user authentication;
-- Persist user data to present a history;
+- [x] Refactor form logic;
+- [ ] Add small UI improvements;
+- [ ] Add user authentication;
+- [ ] Persist user data to present a history;
 
 Made by [Carlos](https://www.linkedin.com/in/kdumagalhaes/) :wave:
