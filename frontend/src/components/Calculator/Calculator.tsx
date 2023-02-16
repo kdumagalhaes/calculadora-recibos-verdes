@@ -42,6 +42,7 @@ export function Calculator() {
   return (
     <div>
       <form
+        role="form"
         onSubmit={handleSubmit}
         className="bg-emerald-50 h-max p-4 text-emerald-800 font-light rounded-t-lg flex flex-col gap-2 border border-emerald-100"
       >
@@ -57,6 +58,7 @@ export function Calculator() {
           onInput={handleFirstMonth}
           autoFocus
           required
+          data-testid="input-first-month"
         />
 
         <label htmlFor="second-month">
@@ -70,6 +72,7 @@ export function Calculator() {
           placeholder="Insira o faturamento mensal"
           onInput={handleSecondMonth}
           required
+          data-testid="input-second-month"
         />
 
         <label htmlFor="third-month">
@@ -83,6 +86,7 @@ export function Calculator() {
           placeholder="Insira o faturamento mensal"
           onInput={handleThirdMonth}
           required
+          data-testid="input-third-month"
         />
         <button
           onClick={scrollToBottom}
@@ -96,11 +100,15 @@ export function Calculator() {
           <div className="bg-emerald-100 p-4 text-emerald-800 flex flex-col gap-2 rounded-b-lg">
             <div className="flex justify-between items-center border-b-2 border-emerald-200/60 mb-3 pb-1">
               <p className="font-light">Faturamento trimestral bruto</p>
-              <span className="font-light">{formatMoney(totalGross)}</span>
+              <span className="font-light" data-testid="total-gross">
+                {formatMoney(totalGross)}
+              </span>
             </div>
             <div className="flex justify-between items-center border-b-2 border-emerald-200/60 mb-3 pb-1">
               <p className="font-light">Rendimento relevante</p>
-              <span className="font-light">{formatMoney(relevantIncome)}</span>
+              <span className="font-light" data-testid="relevant-income">
+                {formatMoney(relevantIncome)}
+              </span>
             </div>
             <div className="flex justify-between items-center border-b-2 border-emerald-200/60 mb-3 pb-1">
               <p className="font-light">Taxa</p>
@@ -108,7 +116,10 @@ export function Calculator() {
             </div>
             <div className="flex justify-between items-center">
               <p className="font-semibold">Imposto mensal a reter</p>
-              <span className="bg-emerald-900 p-1 text-emerald-300 rounded">
+              <span
+                className="bg-emerald-900 p-1 text-emerald-300 rounded"
+                data-testid="monthly-tax"
+              >
                 {formatMoney(monthlyTax)}
               </span>
             </div>
