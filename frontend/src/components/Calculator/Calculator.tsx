@@ -3,9 +3,11 @@ import { formatMoney } from '../../utils/formatMoney'
 import autoAnimate from '@formkit/auto-animate'
 
 export function Calculator() {
-  const [firstMonth, setFirstMonth] = useState(0)
-  const [secondMonth, setSecondMonth] = useState(0)
-  const [thirdMonth, setThirdMonth] = useState(0)
+  const [data, setData] = useState({
+    firstMonth: 0,
+    secondMonth: 0,
+    thirdMonth: 0,
+  })
   const [isResult, setIsResult] = useState(false)
   const parent = useRef<HTMLDivElement>(null)
   const bottomDiv = useRef<HTMLDivElement>(null)
@@ -23,19 +25,16 @@ export function Calculator() {
     return () => clearTimeout(timer)
   }
 
-  const handleFirstMonth = (e: ChangeEvent<HTMLInputElement>) =>
-    setFirstMonth(parseInt(e.target.value))
-  const handleSecondMonth = (e: ChangeEvent<HTMLInputElement>) =>
-    setSecondMonth(parseInt(e.target.value))
-  const handleThirdMonth = (e: ChangeEvent<HTMLInputElement>) =>
-    setThirdMonth(parseInt(e.target.value))
-
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsResult(true)
   }
 
-  const totalGross = firstMonth + secondMonth + thirdMonth
+  const handleData = (prop: string, event: ChangeEvent<HTMLInputElement>) => {
+    setData({ ...data, [prop]: Number(event.target.value) })
+  }
+
+  const totalGross = data.firstMonth + data.secondMonth + data.thirdMonth
   const relevantIncome = totalGross * 0.7
   const monthlyTax = (relevantIncome * (21.4 / 100)) / 3
 
@@ -55,7 +54,7 @@ export function Calculator() {
           name="first-month"
           type="number"
           placeholder="Insira o faturamento mensal"
-          onInput={handleFirstMonth}
+          onChange={(e) => handleData('firstMonth', e)}
           autoFocus
           required
           data-testid="input-first-month"
@@ -70,7 +69,7 @@ export function Calculator() {
           name="second-month"
           type="number"
           placeholder="Insira o faturamento mensal"
-          onInput={handleSecondMonth}
+          onChange={(e) => handleData('secondMonth', e)}
           required
           data-testid="input-second-month"
         />
@@ -84,7 +83,7 @@ export function Calculator() {
           name="third-month"
           type="number"
           placeholder="Insira o faturamento mensal"
-          onInput={handleThirdMonth}
+          onChange={(e) => handleData('thirdMonth', e)}
           required
           data-testid="input-third-month"
         />
